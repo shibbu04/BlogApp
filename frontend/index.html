@@ -2,18 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Using an online favicon from a CDN -->
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Title with an emoji -->
-    <title>BlogApp🌟</title>
-    
-    <!-- You can also add a theme-color to match the design theme -->
     <meta name="theme-color" content="#4CAF50" />
+    <meta name="description" content="BlogApp - A modern application for sharing and discovering blogs." />
+
+    <!-- Open Graph and Twitter Cards for Social Media -->
+    <meta property="og:title" content="BlogApp 🌟" />
+    <meta property="og:description" content="Discover amazing blogs with BlogApp!" />
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png" />
+    <meta property="og:url" content="https://your-app-url.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png" type="image/png" />
+    <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png" />
+
+    <!-- Title -->
+    <title>BlogApp 🌟</title>
+
+    <!-- Preload Main Script -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      JavaScript is required to run this application.
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
