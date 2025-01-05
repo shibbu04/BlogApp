@@ -18,11 +18,11 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const { setUser } = useAuth();
   
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: z.infer<typeof schema>) => {
     try {
       setIsLoading(true);
       setError('');
@@ -31,7 +31,7 @@ export default function LoginForm() {
       setUser(response.user);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.error || 'Login failed');
+      setError((err as any).response?.data?.error || 'Login failed');
     } finally {
       setIsLoading(false);
     }
