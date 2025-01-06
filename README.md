@@ -101,8 +101,8 @@ project-root/
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository_url>
-   cd project-root
+   git clone https://github.com/shibbu04/BlogApp
+   cd BlogApp
 
    cd frontend
    npm install
