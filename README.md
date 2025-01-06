@@ -125,7 +125,7 @@ project-root/
 
 2. **Set up environment** variables: Create a frontend/ .env file in the frontend root directory with the following:
 
-                `VITE_API_URL=http://localhost:3000/api`
+   `VITE_API_URL=http://localhost:3000/api`
 
 1. **Start the application:**
 
@@ -135,8 +135,7 @@ project-root/
 
 2. **Access the services:**
 
-   - API: `http://localhost:3000/api`
-   - Frontend: `http://localhost:5173`
+   - Frontend: `https://vlog-platform.vercel.app/`
 
 ---
 
