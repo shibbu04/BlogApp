@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loader } from 'lucide-react';
-import api from '../../lib/api';
+import { blogs } from '../../lib/api';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import CommentSection from '../../components/comments/CommentSection';
+import { Post } from '../../types/blog';
 
 export default function PostDetail() {
-  const { id } = useParams();
-  const [post, setPost] = useState(null);
+  const { id } = useParams<{ id: string }>();
+  const [post, setPost] = useState<Post | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
+        if (!id) return;
         setIsLoading(true);
-        const response = await api.get(`/blogs/${id}`);
-        setPost(response.data);
+        const response = await blogs.get(id);
+        setPost(response);
       } catch (err) {
         setError('Failed to load post');
       } finally {
@@ -31,7 +33,7 @@ export default function PostDetail() {
     return (
       <DashboardLayout>
         <div className="flex justify-center items-center h-64">
-          <Loader className="animate-spin h-8 w-8 text-blue-600" />
+          <Loader className="animate-spin h-8 w-8 text-pink-500" />
         </div>
       </DashboardLayout>
     );
@@ -50,18 +52,18 @@ export default function PostDetail() {
   return (
     <DashboardLayout>
       <div className="max-w-4xl mx-auto py-6">
-        <article className="bg-white p-6 rounded-lg shadow">
-          <h1 className="text-3xl font-bold text-gray-900">{post.title}</h1>
-          <div className="mt-2 text-sm text-gray-500">
+        <article className="bg-gradient-to-r from-pink-50 to-green-50 p-6 rounded-lg shadow-lg mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">{post.title}</h1>
+          <div className="text-sm text-gray-500 mb-6">
             {new Date(post.created_at).toLocaleDateString()}
           </div>
-          <div className="mt-6 prose max-w-none">
+          <div className="prose max-w-none text-gray-700 whitespace-pre-wrap">
             {post.content}
           </div>
         </article>
 
         <div className="mt-8">
-          <CommentSection postId={id} />
+          {id && <CommentSection postId={id} />}
         </div>
       </div>
     </DashboardLayout>
